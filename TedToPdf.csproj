@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>22.1.0</Version>
+    <Company>Trimble</Company>
+    <Copyright>Copyright © Trimble Solutions Corporation. All rights reserved.</Copyright>
+    <Authors>Trimble</Authors>
+    <Product>Tedds TED to PDF Converter</Product>
+    <Description>Tekla Tedds .TED to .PDF Converter</Description>
+    <PackageProjectUrl>https://developer.tekla.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TrimbleSolutionsCorporation/TeddsPdfConverter</RepositoryUrl>
+    <ApplicationIcon>TeddsAPI.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TeklaTeddsAPI" Version="22.1.0" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if not &quot;$(TeddsPath)&quot;==&quot;&quot; if exist &quot;$(TeddsPath)&quot; (&#xD;&#xA;	echo Copy to Tedds dir&#xD;&#xA;	copy &quot;$(TargetPath)&quot; &quot;$(TeddsPath)&quot;&#xD;&#xA;	copy &quot;$(TargetDir)$(TargetName).exe&quot; &quot;$(TeddsPath)&quot;&#xD;&#xA;	copy &quot;$(TargetDir)$(TargetName).runtimeconfig.json&quot; &quot;$(TeddsPath)&quot;&#xD;&#xA;)" />
+  </Target>
+
+</Project>
