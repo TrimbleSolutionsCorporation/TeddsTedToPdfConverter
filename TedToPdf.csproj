@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>22.1.0</Version>
+    <Version>22.2.0</Version>
     <Company>Trimble</Company>
     <Copyright>Copyright © Trimble Solutions Corporation. All rights reserved.</Copyright>
     <Authors>Trimble</Authors>
@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TeklaTeddsAPI" Version="22.1.0" />
+    <PackageReference Include="TeklaTeddsAPI" Version="22.2.0" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
