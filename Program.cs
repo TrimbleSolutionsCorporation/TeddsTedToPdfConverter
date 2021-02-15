@@ -36,6 +36,10 @@ namespace TedToPdf
         /// Adobe PDF file extension
         /// </summary>
         public const string FileExtension_Pdf = ".pdf";
+        /// <summary>
+        /// Characters which are trimmed from file paths
+        /// </summary>
+        public static readonly char[] FilePathTrimChars = { ' ', '\'', '\"' };
 
         /// <summary>
         /// Main program 
@@ -98,7 +102,7 @@ namespace TedToPdf
             {
                 //File or directory
                 Console.WriteLine("Enter path of a Tedds document file or a directory to convert");
-                filePath = Console.ReadLine();
+                filePath = Console.ReadLine().Trim(FilePathTrimChars);
             }
             while (!File.Exists(filePath) && !Directory.Exists(filePath));
 
@@ -159,7 +163,7 @@ namespace TedToPdf
 
                     //Drive, path, filename
                     default:
-                        filePaths.Add(arg);
+                        filePaths.Add(arg.Trim(FilePathTrimChars));
                         break;
                 }
             }
@@ -261,11 +265,14 @@ namespace TedToPdf
             string outputFileName = Path.ChangeExtension(fileName, FileExtension_Pdf);
 
             //Verify whether output file already exists
-            if (File.Exists(outputFileName) && options.overwrite == false)
-                return;
+            if (File.Exists(outputFileName))
+            {
+                if (options.overwrite == false)
+                    return;
 
-            if (options.overwrite != true && !PromptToOverwrite(outputFileName, ref options, ref cancel))
-                return;
+                if (options.overwrite != true && !PromptToOverwrite(outputFileName, ref options, ref cancel))
+                    return;
+            }
 
             bool closeDocument = false;
             ITeddsDocument document = null;
