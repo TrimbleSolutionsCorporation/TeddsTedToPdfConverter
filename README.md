@@ -5,6 +5,9 @@ Tedds .TED to .PDF Converter
 Tedds PDF Converter licensed under the FreeBSD license
 
 ## History
+### Tedds PDF Converter 2022
+* Update to Tekla Tedds API 24.0 nuget (2022)
+
 ### Tedds PDF Converter 2021
 * Only prompt to overwrite file if it actually exists
 * Trim file paths before processing

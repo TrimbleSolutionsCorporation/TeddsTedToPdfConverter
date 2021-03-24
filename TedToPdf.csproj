@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>23.0.0</Version>
+    <Version>24.1.0.0</Version>
     <Company>Trimble</Company>
     <Copyright>Copyright © Trimble Solutions Corporation. All rights reserved.</Copyright>
     <Authors>Trimble</Authors>
@@ -14,12 +14,22 @@
     <ApplicationIcon>TeddsAPI.ico</ApplicationIcon>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="TeklaTeddsAPI" Version="23.0.0" />
+  <ItemGroup Label="Exclude git files">
+    <None Remove=".git" />
+    <None Remove=".gitignore" />
+    <None Remove="LICENSE" />
+    <None Remove="README.md" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if not &quot;$(TeddsPath)&quot;==&quot;&quot; if exist &quot;$(TeddsPath)&quot; (&#xD;&#xA;	echo Copy to Tedds dir&#xD;&#xA;	copy &quot;$(TargetPath)&quot; &quot;$(TeddsPath)&quot;&#xD;&#xA;	copy &quot;$(TargetDir)$(TargetName).exe&quot; &quot;$(TeddsPath)&quot;&#xD;&#xA;	copy &quot;$(TargetDir)$(TargetName).runtimeconfig.json&quot; &quot;$(TeddsPath)&quot;&#xD;&#xA;)" />
+  <ItemGroup>
+    <PackageReference Include="TeklaTeddsAPI" Version="24.1.0" />
+  </ItemGroup>
+
+  <Target Name="TedToPdfPostBuild" AfterTargets="Build" Condition=" '$(TeddsPath)' != '' AND Exists('$(TeddsPath)') ">
+    <Message Text="Copy to Tedds dir" Importance="high" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TeddsPath)" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).exe" DestinationFolder="$(TeddsPath)" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).runtimeconfig.json" DestinationFolder="$(TeddsPath)" />
   </Target>
 
 </Project>
