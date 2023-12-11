@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <Version>25.0.0.0</Version>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Version>26.0.0.1</Version>
     <Company>Trimble</Company>
-    <Copyright>Copyright © Trimble Solutions Corporation. All rights reserved.</Copyright>
-    <Authors>Trimble</Authors>
+    <Copyright>© 1992-$([System.DateTime]::Now.ToString("yyyy")) Trimble Inc. and its affiliates. All rights reserved.</Copyright>
+    <Authors>Trimble Inc. and affiliates</Authors>
     <Product>Tedds TED to PDF Converter</Product>
     <Description>Tekla Tedds .TED to .PDF Converter</Description>
     <PackageProjectUrl>https://developer.tekla.com</PackageProjectUrl>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="TeklaTeddsAPI" Version="25.0.0" />
+    <PackageReference Include="TeklaTeddsAPI" Version="26.0.0" />
   </ItemGroup>
 
   <Target Name="TedToPdfPostBuild" AfterTargets="Build" Condition=" '$(TeddsPath)' != '' AND Exists('$(TeddsPath)') ">
