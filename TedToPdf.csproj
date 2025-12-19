@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Version>27.0.1.0</Version>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Version>28.0.1.0</Version>
     <Company>Trimble</Company>
     <Copyright>© 1992-$([System.DateTime]::Now.ToString("yyyy")) Trimble Inc. and its affiliates. All rights reserved.</Copyright>
     <Authors>Trimble Inc. and affiliates</Authors>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="TeklaTeddsAPI" Version="27.0.1" />
+    <PackageReference Include="TeklaTeddsAPI" Version="28.0.1" />
   </ItemGroup>
 
   <Target Name="TedToPdfPostBuild" AfterTargets="Build" Condition=" '$(TeddsPath)' != '' AND Exists('$(TeddsPath)') ">
